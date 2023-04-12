@@ -1,7 +1,8 @@
 package com.sanjay.cardatabase.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 
 @Entity
 
