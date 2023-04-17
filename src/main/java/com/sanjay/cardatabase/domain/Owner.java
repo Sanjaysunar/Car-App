@@ -1,10 +1,9 @@
 package com.sanjay.cardatabase.domain;
 
+import javax.persistence.*;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import javax.persistence.*;
-
-import java.util.List;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
@@ -27,7 +26,6 @@ public class Owner {
     }
 
     public Owner(){}
-
 
     public Owner(String firstname, String lastname) {
         this.firstname = firstname;

@@ -1,11 +1,8 @@
 package com.sanjay.cardatabase.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 
-
 @Entity
-
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

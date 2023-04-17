@@ -19,6 +19,7 @@ public class CarAppApplication implements CommandLineRunner {
 
     @Autowired
     private CarRepository repository;
+
     @Autowired
     private OwnerRepository orepository;
 
