@@ -9,4 +9,4 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 Backend/src/main/resources/application.properties
-Backend/pom.xml
+
