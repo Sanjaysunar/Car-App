@@ -14,8 +14,45 @@ function AddCar(props) {
         fuel: '',
         price: ''
     });
+
+    //Open the modal form
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    //Close the modal form
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleChange = (event) => {
+        setCar({...car, [event.target.name] :
+            event.target.value});
+    }
+
     return(
-        <div></div>
+        <div>
+            <button onClick={handleClickOpen}>New Car</button>
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>New Car</DialogTitle>
+                <DialogContent>
+                    <input placeholder='Brand' name='brand'
+                    value={car.brand} onChange={handleChange}/><br/>
+                    <input placeholder='Model' name='model'
+                    value={car.model} onChange={handleChange}/><br/>
+                    <input placeholder='Color' name='color'
+                    value={car.color} onChange={handleChange}/><br/>
+                    <input placeholder='Year' name='year'
+                    value={car.year} onChange={handleChange}/><br/> 
+                    <input placeholder='Price' name='Price'
+                    value={car.price} onChange={handleChange}/><br/>
+                </DialogContent>
+                <DialogActions>
+                    <button onClick={handleClose}>Cancel</button>
+                    <button onClick={handleClose}>Save</button>
+                </DialogActions>
+            </Dialog>
+        </div>
     );
 }
 
