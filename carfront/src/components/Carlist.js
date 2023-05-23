@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SERVER_URL } from "../constants";
 import { DataGrid } from "@mui/x-data-grid";
 import { Snackbar } from "@mui/material";
+import AddCar from "./AddCar";
 
 function Carlist() {
     const [cars, setCars] = useState([]);
@@ -34,6 +35,27 @@ function Carlist() {
         }
     }
 
+    //Add a new car
+    const addCar = (car) => {
+        fetch(SERVER_URL + 'api/cars',
+        {
+            method: 'POST',
+            headers: {
+                'Content-type' : 'application/json',
+            },
+            body: JSON.stringify(car)
+        })
+        .then(response => {
+            if (response.ok) {
+                fetchCars();
+            }
+            else {
+                alert('Something went wrong!');
+            }
+        })
+        .catch(err => console.error(err))
+    }
+
     const columns = [
         {field: 'brand', headerName: 'Brand', width: 200},
         {field: 'model', headerName: 'Model', width: 200},
@@ -53,22 +75,24 @@ function Carlist() {
     ];
 
     return(
-        <div style={{ height: 500, width: '100%' }}>
-            <DataGrid
-                rows={cars}
-                columns={columns}
-                disableSelectionOnClick={true}
-                getRowId={row => row._links.self.href}
-            />
-            <Snackbar
-                open={open}
-                autoHideDuration={2000}
-                onClose={() => setOpen(false)}
-                message="Car deleted"
-            />
-
-                </div>
-            );
+        <React.Fragment>
+            <AddCar addCar={addCar} />
+            <div style={{ height: 500, width: '100%' }}>
+                <DataGrid
+                    rows={cars}
+                    columns={columns}
+                    disableSelectionOnClick={true}
+                    getRowId={row => row._links.self.href}
+                />
+                <Snackbar
+                    open={open}
+                    autoHideDuration={2000}
+                    onClose={() => setOpen(false)}
+                    message="Car deleted"
+                />
+            </div>
+        </React.Fragment>
+        );
 }
 
 export default Carlist;
