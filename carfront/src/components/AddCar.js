@@ -1,8 +1,8 @@
 import React, { useState} from 'react';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material';
-import DialogContent from '@mui/material';
-import DialogTitle from '@mui/material';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 
 function AddCar(props) {
     const [open, setOpen] = useState(false);
@@ -30,6 +30,12 @@ function AddCar(props) {
             event.target.value});
     }
 
+    // Save car and close modal form
+    const handleSave = () => {
+        props.addCar(car);
+        handleClose();
+    }
+
     return(
         <div>
             <button onClick={handleClickOpen}>New Car</button>
@@ -44,12 +50,12 @@ function AddCar(props) {
                     value={car.color} onChange={handleChange}/><br/>
                     <input placeholder='Year' name='year'
                     value={car.year} onChange={handleChange}/><br/> 
-                    <input placeholder='Price' name='Price'
+                    <input placeholder='Price' name='price'
                     value={car.price} onChange={handleChange}/><br/>
                 </DialogContent>
                 <DialogActions>
                     <button onClick={handleClose}>Cancel</button>
-                    <button onClick={handleClose}>Save</button>
+                    <button onClick={handleSave}>Save</button>
                 </DialogActions>
             </Dialog>
         </div>
